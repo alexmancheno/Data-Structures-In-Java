@@ -44,6 +44,25 @@ public class main {
 
         System.out.println("countList(): " + list2.countList());
         System.out.println("list2.size(): " + list2.size());
+
+
+        CircularlyLinkedList<String> clist1 = new CircularlyLinkedList<>();
+
+        for (int i = 0; i <= 10; i++) {
+            clist1.addFirst(Integer.toString(i));
+        }
+
+        for (int i = 10; i >= 0; i--) {
+            clist1.addLast(Integer.toString(i));
+        }
+
+        System.out.println(clist1.size());
+        clist1.removeFirst();
+        clist1.removeFirst();
+        System.out.println(clist1.size());
+
+        System.out.println(clist1);
+
         final long endTime = System.currentTimeMillis();
 
         System.out.println("Total execution time: " + (endTime - startTime));

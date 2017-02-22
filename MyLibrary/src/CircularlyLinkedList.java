@@ -1,9 +1,9 @@
 /**
- * Created by Alex on 2/19/17.
+ * Created by Alex on 2/20/17.
  */
 
 
-public class SinglyLinkedList<E> {
+public class CircularlyLinkedList<E> {
 
     // ----Nested Node class----
     private static class Node<E> {
@@ -31,14 +31,13 @@ public class SinglyLinkedList<E> {
     }
     // ----End of nested Node class----
 
-    // ----SinglyLinkedList class----
-    private Node<E> head = null;
+    // ----CircularlyLinkedList class----
     private Node<E> tail = null;
     private int size = 0;
 
-    //access methods
-    public SinglyLinkedList() {}
+    public CircularlyLinkedList() {}
 
+    //access methods
     public int size() {
         return size;
     }
@@ -48,49 +47,55 @@ public class SinglyLinkedList<E> {
     }
 
     public E first() {
-        if (size == 0) return null;
+        if (isEmpty())
+            return null;
+        return tail.getNext().getData();
+    }
 
-        return head.getData();
+    public E last() {
+        if (isEmpty())
+            return null;
+        return tail.getData();
     }
 
     //update methods
-    public void addFirst(E e) {
-        head = new Node<>(e, head);
-        if (size == 0)
-            tail = head;
+    public void rotate() {
+        if (tail != null)
+            tail = tail.getNext();
+    }
 
+    public void addFirst(E e) {
+        if (size == 0) {
+            tail = new Node<E>(e, null);
+            tail.setNext(tail);
+        } else {
+            Node<E> newest = new Node<E>(e, tail.getNext());
+            tail.setNext(newest);
+        }
         size++;
     }
 
     public void addLast(E e) {
-        Node<E> newLast = new Node<>(e, null);
-        if (size == 0)
-            head = newLast;
-        else
-            tail.next = newLast;
-
-        tail = newLast;
-        size++;
+        addFirst(e);
+        tail = tail.getNext(); //tail becomes head
     }
 
     public void removeFirst() {
-        if (size > 0) {
-            head = head.getNext();
+        if (size > 1) {
+            tail.next = tail.next.getNext();
             size--;
-
-            if (size == 0) {
-                tail = null;
-            }
+        } else if (size == 1) {
+            tail.next = null;
+            size--;
         }
     }
 
-
-    //etc methods
+    //etc. methods
     public String toString() {
         StringBuilder results = new StringBuilder("");
-        Node<E> iterator = head;
+        Node<E> iterator = tail.getNext();
 
-        while (iterator != null) {
+        for (int i = 0; i < size; i++) {
             results.append(iterator.getData());
             results.append(" ");
             iterator = iterator.next;
@@ -100,7 +105,7 @@ public class SinglyLinkedList<E> {
     }
 
     public int countList() {
-        Node<E> iterator = head;
+        Node<E> iterator = tail.getNext();
         int count = 0;
 
         while (iterator != null) {
@@ -110,5 +115,6 @@ public class SinglyLinkedList<E> {
 
         return count;
     }
+
 
 }
