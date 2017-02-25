@@ -5,7 +5,7 @@
 
 public class SinglyLinkedList<E> {
 
-    // ----Nested Node class----
+    // ----nested Node class----
     private static class Node<E> {
         private E data;
         private Node<E> next;
@@ -73,15 +73,25 @@ public class SinglyLinkedList<E> {
         size++;
     }
 
-    public void removeFirst() {
-        if (size > 0) {
+    public E removeFirst() {
+        if (size == 0) {
+            return null;
+        } else {
+            E temp = head.getData();
             head = head.getNext();
             size--;
 
             if (size == 0) {
                 tail = null;
             }
+
+            return temp;
         }
+    }
+
+    public void makeEmpty() {
+        head = null;
+        size = 0;
     }
 
 

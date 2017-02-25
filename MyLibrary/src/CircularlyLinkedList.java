@@ -80,41 +80,68 @@ public class CircularlyLinkedList<E> {
         tail = tail.getNext(); //tail becomes head
     }
 
-    public void removeFirst() {
-        if (size > 1) {
-            tail.next = tail.next.getNext();
-            size--;
-        } else if (size == 1) {
+//    public void removeFirst() {
+//        if (size > 1) {
+//            tail.next = tail.next.getNext();
+//            size--;
+//        } else if (size == 1) {
+//            tail.next = null;
+//            size--;
+//        }
+//    }
+
+    public E removeFirst() {
+        if (isEmpty()) return null;
+        Node<E> head = tail.getNext();
+
+        if (head == tail) {
             tail.next = null;
-            size--;
+            tail = null;
+        } else {
+            tail.next = tail.next.next;
         }
+        size--;
+        return head.getData();
     }
 
     //etc. methods
     public String toString() {
         StringBuilder results = new StringBuilder("");
-        Node<E> iterator = tail.getNext();
 
-        for (int i = 0; i < size; i++) {
-            results.append(iterator.getData());
-            results.append(" ");
-            iterator = iterator.next;
+        if (tail != null) {
+            Node<E> iterator = tail.getNext();
+            for (int i = 0; i < size; i++) {
+                results.append(iterator.getData());
+                results.append(" ");
+                iterator = iterator.next;
+            }
         }
 
         return results.toString();
     }
 
     public int countList() {
-        Node<E> iterator = tail.getNext();
         int count = 0;
+        if (tail != null) {
 
-        while (iterator != null) {
-            count++;
-            iterator = iterator.getNext();
+            Node<E> iterator = tail.getNext();
+
+            do {
+                count++;
+                iterator = iterator.getNext();
+            } while (iterator != tail.getNext());
         }
 
         return count;
     }
 
+    public void makeEmpty() {
+        tail.next = null;
+        tail = null;
+        size = 0;
+    }
 
+    public E getTail() {
+        return tail.data;
+    }
 }
