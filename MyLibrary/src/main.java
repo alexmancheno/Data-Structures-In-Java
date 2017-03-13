@@ -91,7 +91,24 @@ public class main {
         final long endTime = System.currentTimeMillis();
 
         System.out.println("----------------------------");
-        System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+        System.out.println("ArrayStack tests:");
+        ArrayStack<Integer> arrayStack1 = new ArrayStack<Integer>();
+
+        for (int i = 0; i < 50; i++)
+            arrayStack1.push(i);
+
+        System.out.println("arrayStack1.size(): " + arrayStack1.size() + ", arrayStack1.count(): " + arrayStack1.count());
+        System.out.println("arrayStack1.toString(): " + arrayStack1.toString());
+
+        for (int i = 0; i < 21; i++)
+            arrayStack1.pop();
+
+        System.out.println("arrayStack1.size(): " + arrayStack1.size() + ", arrayStack1.count(): " + arrayStack1.count());
+        System.out.println("arrayStack1.toString(): " + arrayStack1.toString());
+
+
+        System.out.println("----------------------------");
+        System.out.println("Total execution time: " + (endTime - startTime) * 0.001 + " seconds");
 
     }
 }
