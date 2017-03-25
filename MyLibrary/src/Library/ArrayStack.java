@@ -1,6 +1,9 @@
 /**
  * Created by Alex on 3/10/17.
  */
+
+package Library;
+
 public class ArrayStack<E> implements Stack<E> {
 
     public static final int CAPACITY = 1000;
@@ -42,10 +45,11 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     public void reverse() {
-        E[] newData = (E[]) new Object[data.length];
-        for (int i = 0; data[i] != null; i++)
-            newData[i] = data[i];
-        
+        E[] reversedData = (E[]) new Object[data.length];
+        for (int i = t, j = 0; i > -1; i--, j++)
+            reversedData[j] = data[i];
+
+        data = reversedData;
     }
 
     public int count() {

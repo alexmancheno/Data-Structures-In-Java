@@ -2,6 +2,8 @@
  * Created by Alex on 2/20/17.
  */
 
+import Library.*;
+
 public class main {
 
     public static void main(String[] args) {
@@ -106,9 +108,41 @@ public class main {
         System.out.println("arrayStack1.size(): " + arrayStack1.size() + ", arrayStack1.count(): " + arrayStack1.count());
         System.out.println("arrayStack1.toString(): " + arrayStack1.toString());
 
+        arrayStack1.reverse();
+        System.out.println("arrayStack1.toString(): " + arrayStack1.toString());
 
         System.out.println("----------------------------");
+        System.out.println("ArrayQueue tests:");
+
+        ArrayQueue<Integer> arrayQueue1 = new ArrayQueue<Integer>(1000);
+
+        for (int i = 0; i < 50; i++)
+            arrayQueue1.enqueue(i);
+
+        System.out.println("arrayQueue1.toString(): " + arrayQueue1.toString());
+
+        for (int i = 0; i < 20; i++)
+            arrayQueue1.dequeue();
+        System.out.println("arrayQueue1.toString(): " + arrayQueue1.toString());
+
+
+        System.out.println("arrayQueue1.count(): " + arrayQueue1.count() + ", arrayQueue1.size(): " + arrayQueue1.size());
+
+        System.out.println("----------------------------");
+        System.out.println("LargeNumber tests:");
+
+        LargeNumbers largeNumber1 = new LargeNumbers("2139128309128302374982374824");
+        LargeNumbers largeNumber2 = new LargeNumbers("984738127648792136498");
+        LargeNumbers largeNumber3 = (largeNumber1.add(largeNumber2));
+        LargeNumbers largeNumber4 = new LargeNumbers("1234568728947283947982347982374982374987");
+
+        System.out.println("largeNumber1.toString(): " + largeNumber1.toString());
+        System.out.println("largeNumber4.toString(): " + largeNumber4.toString());
+
+        System.out.println(largeNumber3);
+
         System.out.println("Total execution time: " + (endTime - startTime) * 0.001 + " seconds");
+
 
     }
 }

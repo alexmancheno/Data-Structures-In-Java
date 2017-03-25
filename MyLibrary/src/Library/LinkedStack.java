@@ -1,6 +1,9 @@
 /**
  * Created by Alex on 3/12/17.
  */
+
+package Library;
+
 public class LinkedStack<E> implements Stack<E> {
 
     private SinglyLinkedList<E> list = new SinglyLinkedList<E>();

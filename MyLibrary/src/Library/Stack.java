@@ -1,6 +1,9 @@
 /**
  * Created by Alex on 2/25/17.
  */
+
+package Library;
+
 public interface Stack <E> {
 
     int size ();
