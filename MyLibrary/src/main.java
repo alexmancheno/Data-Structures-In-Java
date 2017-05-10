@@ -3,6 +3,8 @@
  */
 
 import Library.*;
+import Library.BinaryTree;
+import com.sun.source.tree.*;
 
 public class main {
 
@@ -12,7 +14,7 @@ public class main {
         System.out.println("----------------------------");
         System.out.println("SinglyLinkedList tests: ");
 
-        SinglyLinkedList<String> list1 = new SinglyLinkedList<>();
+        SinglyLinkedList<String> list1 = new SinglyLinkedList<String>();
 
         list1.addFirst("e");
         list1.addFirst("gg");
@@ -27,7 +29,7 @@ public class main {
 
         System.out.println(list1);
 
-        SinglyLinkedList<String> list2 = new SinglyLinkedList<>();
+        SinglyLinkedList<String> list2 = new SinglyLinkedList<String>();
 
         for (int i = 0; i < 32000; i++) {
             list2.addLast(Integer.toString(i));
@@ -51,7 +53,7 @@ public class main {
 
         System.out.println("----------------------------");
         System.out.println("CircularlyLinkedList tests: ");
-        CircularlyLinkedList<String> clist1 = new CircularlyLinkedList<>();
+        CircularlyLinkedList<String> clist1 = new CircularlyLinkedList<String>();
 
         for (int i = 0; i <= 10; i++) {
             clist1.addFirst(Integer.toString(i));
@@ -76,7 +78,7 @@ public class main {
         System.out.println("----------------------------");
         System.out.println("DoublyLinkedList tests:");
 
-        DoublyLinkedList<String> dlist1 = new DoublyLinkedList<>();
+        DoublyLinkedList<String> dlist1 = new DoublyLinkedList<String>();
         for (int i = 0; i < 10; i++) {
             dlist1.addLast(Integer.toString(i));
         }
@@ -141,6 +143,37 @@ public class main {
 
         System.out.println(largeNumber3);
 
+        System.out.println("----------------------------");
+        System.out.println("BinaryTree tests:");
+       int[] array1 = {1, 7, 3, 4, 5};
+       int[] array2 = {0, 4, 1, 2, 3} ;
+
+        BinaryTree t = new BinaryTree();
+        BinaryTree tt = new BinaryTree();
+        try {
+            for (int i = 0; i < array1.length; i++) {
+                t = BinaryTree.insert(t, array1[i]);
+                tt = BinaryTree.insert(tt, array2[i]);
+            }
+        } catch (Exception e) {
+            System.out.println("error inserting into array1");
+        }
+
+        System.out.println("Binary trees are structurally equal (static version): " + BinaryTree.compareTrees(t, tt));
+        System.out.println("Binary trees are structurally equal (instance version): " + t.compareTrees(tt));
+
+        System.out.println("----------------------------");
+        System.out.println("AVLTree tests:");
+
+        int[] array3 = {20, 1, 7, 3, 4, 5, 8, 10, 32, 14, 22, 35, 6, 50, 100, 32, 45};
+
+        AVLTree<Integer> avl = new AVLTree<Integer>();
+        for (int i = 0; i < array3.length; i++) {
+            avl.insert(array3[i]);
+        }
+
+        System.out.println("avl.inOrder(): ");
+        AVLTree.inOrder(avl);
         System.out.println("Total execution time: " + (endTime - startTime) * 0.001 + " seconds");
 
 

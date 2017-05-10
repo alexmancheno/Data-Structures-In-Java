@@ -3,7 +3,6 @@
  */
 
 package Library;
-
 public class ArrayStack<E> implements Stack<E> {
 
     public static final int CAPACITY = 1000;
@@ -14,7 +13,9 @@ public class ArrayStack<E> implements Stack<E> {
         this(CAPACITY);
     }
 
+
     public ArrayStack(int capacity) {
+        //@SuppressWarnings("unchecked")
         data = (E[]) new Object[capacity];
     }
 
